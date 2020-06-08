@@ -1,3 +1,10 @@
+<!-- 根据token来判断(不登陆，没有token，则不能进入首页，跳转到login) -->
+<script>
+    if (!localStorage.getItem('token')) {
+        location.href = '/login.html'
+    }
+</script>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -35,7 +42,9 @@
                         <dd><a href="">重置密码</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href=""><i class="layui-icon layui-icon-logout"></i> 退出</a></li>
+                <li class="layui-nav-item"><a href="JavaScript:;" id='logout'><i
+                            class="layui-icon layui-icon-logout"></i> 退出</a>
+                </li>
             </ul>
         </div>
 
@@ -46,7 +55,7 @@
                     <span class="text-avatar">X</span>
                     <!-- 图片头像 -->
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    欢迎　<span>xf</span>
+                    欢迎　<span class="myname"></span>
                 </div>
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="test">
