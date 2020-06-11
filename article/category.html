@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章类别</title>
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="/assets/css/article/category.css">
+    <script src="/assets/lib/jquery.js"></script>
+    <script src="/assets/lib/layui/layui.all.js"></script>
+    <!-- 模板引擎 -->
+    <script src="/assets/lib/template-web.js"></script>
+    <script src="/assets/js/common.js"></script>
+    <script src="/assets/js/article/category.js"></script>
+</head>
+
+<body>
+    <div class="layui-card">
+        <div class="layui-card-header">文章类别管理
+            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">添加类别</button>
+        </div>
+
+        <div class="layui-card-body">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="40%">
+                    <col width="40%">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>分类名称</th>
+                        <th>分类别名</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- 类别列表模板 -->
+    <script type="text/template" id="tpl-category">
+        {{each data val}}
+        <tr>
+            <td>{{val.name}}</td>
+            <td>{{val.alias}}</td>
+            <td>
+                <button type="button" class="layui-btn  layui-btn-xs">编辑</button>
+                <button type="button" class="layui-btn layui-btn-danger  layui-btn-xs">删除</button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+</body>
+
+</html>
