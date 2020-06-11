@@ -32,10 +32,7 @@ $(function () {
         // 发送请求
         $.ajax({
             type: 'POST',
-            url: 'http://www.liulongbin.top:3007/my/updatepwd',
-            headers: {
-                'Authorization': localStorage.getItem('token')
-            },
+            url: '/my/updatepwd',
             data: $(this).serialize(),
             success: function (res) {
                 // 提示
@@ -43,16 +40,6 @@ $(function () {
                 if (res.status === 0) {
                     // 如果成功，重置表单
                     $('form')[0].reset()
-                }
-            },
-            complete: function (res) {
-                if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
-                    // 1.清除token
-                    localStorage.removeItem('token')
-                    // 2.跳转到登陆页面
-                    // windo表示当前窗口
-                    // window.parent表示当前窗口的父窗口index.html
-                    window.parent.location.href = '/login.html'
                 }
             }
         })

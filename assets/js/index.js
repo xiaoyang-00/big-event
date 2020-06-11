@@ -20,7 +20,7 @@ $(function () {
 function getUserInfo() {
     $.ajax({
         type: 'GET',
-        url: 'http://www.liulongbin.top:3007/my/userinfo',
+        url: '/my/userinfo',
         success: function (res) {
             if (res.status === 0) {
                 // 1.设置欢迎语(有昵称使用昵称，没有使用用户名)
@@ -39,21 +39,6 @@ function getUserInfo() {
                 }
             }
 
-        },
-        // 无论成功与否，在请求完成后调用
-        complete: function (res) {
-            // 根据请求结果来判断token是否正确，身份认证是否成功
-            // console.log(res)
-            if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
-                // 1.删除token
-                localStorage.removeItem('token')
-                // 2.跳转到登陆页面
-                location.href = '/login.html'
-            }
-        },
-        // jq中ajax选项，通过它可以设置请求头
-        headers: {
-            'Authorization': localStorage.getItem('token')
         }
     })
 }

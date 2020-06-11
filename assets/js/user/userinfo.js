@@ -3,10 +3,7 @@ function renderUser() {
     // 发送请求，获取用户信息
     $.ajax({
         type: 'GET',
-        url: 'http://www.liulongbin.top:3007/my/userinfo',
-        headers: {
-            'Authorization': localStorage.getItem('token')
-        },
+        url: '/my/userinfo',
         success: function (res) {
 
             if (res.status === 0) {
@@ -39,10 +36,7 @@ $(function () {
         // 发送请求
         $.ajax({
             type: 'POST',
-            url: 'http://www.liulongbin.top:3007/my/userinfo',
-            headers: {
-                'Authorization': localStorage.getItem('token')
-            },
+            url: '/my/userinfo',
             data: data,
             success: function (res) {
                 // 提示

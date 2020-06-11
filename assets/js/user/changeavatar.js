@@ -48,10 +48,7 @@ $(function () {
         // 发送请求
         $.ajax({
             type: 'POST',
-            url: 'http://www.liulongbin.top:3007/my/update/avatar',
-            headers: {
-                'Authorization': localStorage.getItem('token')
-            },
+            url: '/my/update/avatar',
             data: { avatar: dataURL },
             success: function (res) {
                 // 提示
@@ -59,16 +56,6 @@ $(function () {
                 if (res.status === 0) {
                     // 调用父元素getUserInfo()函数，重新渲染头像
                     window.parent.getUserInfo()
-                }
-            },
-            complete: function (res) {
-                // 根据请求结果来判断token是否正确，身份认证是否成功
-                // console.log(res)
-                if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
-                    // 1.删除token
-                    localStorage.removeItem('token')
-                    // 2.跳转到登陆页面
-                    location.href = '/login.html'
                 }
             }
         })
