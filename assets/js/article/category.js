@@ -16,4 +16,42 @@ function renderCatgory() {
 $(function () {
     // -------------------获取列表数据,渲染到页面---------
     renderCatgory()
+
+    // ---------------------添加类别弹出层-----------------------
+    var addIndex
+    $('.layui-card-header button').on('click', function () {
+        // 使用layer.open()实现弹出层
+        addIndex = layer.open({
+            type: 1,
+            title: '添加类别',
+            content: $('#tpl-add').html(),
+            area: ['500px', '260px']
+        })
+    })
+
+    // --------------------------弹出层表单的添加功能-----------------------
+    // 注册事件委托，监听表单提交
+    $('body').on('submit', '#add-form', function (e) {
+        // 阻止表单提交默认行为
+        e.preventDefault()
+        // 发送请求
+        $.ajax({
+            type: 'POST',
+            url: '/my/article/addcates',
+            data: $(this).serialize(),
+            success: function (res) {
+                // 提示
+                layer.msg(res.message)
+                if (res.status === 0) {
+                    // 重新渲染页面
+                    renderCatgory()
+                    // 关闭弹出层
+                    layer.close(addIndex)
+                }
+            }
+
+        })
+    })
+
+    // -------------------------删除功能------------------------------------------
 })
