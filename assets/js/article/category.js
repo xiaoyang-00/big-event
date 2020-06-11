@@ -54,4 +54,29 @@ $(function () {
     })
 
     // -------------------------删除功能------------------------------------------
+    $('body').on('click', '.delete', function () {
+
+        // 询问前，获取id
+        var id = $(this).attr('data-id')
+        // 弹出询问框
+        layer.confirm('确定删除?', { icon: 3, title: '提示' }, function (index) {
+            // 发送请求
+            $.ajax({
+                type: 'GET',
+                // /my/article/deletecate/:id
+                // url: '/my/article/deletecate/1' // 删除id为1的分类
+                url: '/my/article/deletecate/' + id,
+                success: function (res) {
+                    // 提示
+                    layer.msg(res.message)
+                    if (res.status === 0) {
+                        // 重新渲染页面
+                        renderCatgory()
+                    }
+                }
+            })
+
+            layer.close(index);
+        })
+    })
 })
